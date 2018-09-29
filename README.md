@@ -117,8 +117,12 @@ root 플러그인에 추가가 가능하며 심지어 계층형으로 구현도 
     ./sample/validation.html 
 
 
+## Github
 
+현재 소스는 Github에서 오픈소스로 관리중입니다.
+마음껏 사용하시고 좋다 싶으면 쪼아요 눌러주세요 ^^
 
+    https://github.com/shadowbug/validation
 
 
 
