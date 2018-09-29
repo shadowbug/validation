@@ -109,9 +109,14 @@ root 플러그인에 추가가 가능하며 심지어 계층형으로 구현도 
     npm start
 
 
+그 후 아래의 URL로 접속해 보면 간단한 폼 페이지가 뜨게 될 것입니다.
+
+    http://www.localhost:9000/sample/validation.html
 
 
-./sample/validation.html 
+해당 소스에 대한 경로는 아래와 같습니다.
+
+    ./sample/validation.html 
 
 
 
