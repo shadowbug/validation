@@ -1,7 +1,9 @@
 const util = module.require("./validation-util.js");
+const type = module.require("./validation-type.js");
 
 const plugin = { };
 
+// 빈값 체크 플러그인
 plugin.empty = {
     callback : function(elements, condition) {
         if(!condition) {
@@ -191,8 +193,93 @@ plugin.url = {
             result : true
         };
     }
-}
+};
 
+// 체크박스 플러그인 
+plugin.checkbox = {
+    // 체크박스 검증 
+    callback : function(elements, options) {        
+        for(const element of elements) {
+            if(!type.checkbox.is(element)) {
+                throw "체크박스 엘리먼트가 요구됩니다.";
+            }
+        }
+        return {
+            result : true
+        };
+    },
+    // 모든 체크 엘리먼트가 선택되었는지 확인하는 플러그인
+    checkedAll : {
+        callback : function(elements, condition) {
+            if(condition) {
+                for(const element of elements) {
+                    if(!type.checkbox.checked(element)) {
+                        return {
+                            result : false,
+                            element : element,
+                            message : "체크박스가 선택되지 않았습니다"
+                        };
+                    }
+                }
+            }
+            return {
+                result : true
+            };
+        }
+    },
+    // 한개이상의 체크박스가 선택되었는지 확인하는 플러그인
+    checkedOne : {
+        callback : function(elements, condition) {
+            if(condition) {
+                for(const element of elements) {
+                    if(type.checkbox.checked(element)) {
+                        return {
+                            result : true
+                        };
+                    }
+                }
+            }
+            return {
+                result : false,
+                element : elements,
+                message : "하나의 체크박스도 선택되지 않았습니다"
+            };
+        }
+    }
+};
+
+plugin.radio = {
+    callback : function(elements, options) {        
+        for(const element of elements) {
+            if(!type.radio.is(element)) {
+                throw "라디오 엘리먼트가 요구됩니다.";
+            }
+        }
+        return {
+            result : true
+        };
+    },
+
+    // 한개이상의 체크박스가 선택되었는지 확인하는 플러그인
+    selected : {
+        callback : function(elements, condition) {
+            if(condition) {
+                for(const element of elements) {
+                    if(type.radio.selected(element)) {
+                        return {
+                            result : true
+                        };
+                    }
+                }
+            }
+            return {
+                result : false,
+                element : elements,
+                message : "라디오버튼이 선택되지 않았습니다"
+            };
+        }
+    }
+}
 
 
 

@@ -27,7 +27,7 @@ v.validate = function(options) {
                 const callback = option.callback || options.callback || function(type, element, message) {
                     return;
                 }
-                if(result.element != null) {
+                if(result.element && result.element.focus) {
                     result.element.focus();
                 }
                 callback(result.type, result.element, result.message);
@@ -54,11 +54,13 @@ function validate(stack, plugins, elements, name, options) {
 
         // 하위 플러그인 처리
         if(typeof options == "object") {
+            const stype = options.type;
             for(const sname in options) {
                 if(sname == "callback") {
                     continue;
                 }
                 const svalue = options[sname];
+
                 const result = validate(stack, plugin, elements, sname, svalue);
                 if(!result.result) {
                     return result;
