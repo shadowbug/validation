@@ -8,6 +8,14 @@
 
         <script type="text/javascript">
             var option = {
+                "#agree-check" : {
+                   checkbox: {
+                       checkedAll : true
+                   },
+                   callback : function(type, element, message) {
+                    alert("약관 동의 - " + message)
+                   }
+               },
                 "[name=id]" : {
                     empty : false,
                     text : {
@@ -18,7 +26,14 @@
                         alert("아이디 - " + message);
                     }
                 },
-                
+                "#id-check" : {
+                    checkbox : {
+                        checkedAll: true
+                    },
+                    callback: function(type, element, message) {
+                        alert("아이디 검증 - " + message)
+                    }
+                },
                 "[name=password]" : {
                     empty : false,
                     text : {
@@ -29,6 +44,14 @@
                         alert("패스워드 - " + message);
                     }
                 },
+                "[name=sex]" : {
+                    radio : {
+                      selected : true
+                    },
+                    callback : function(type, element, message) {
+                        alert("성별 선택 - " + message)
+                    }
+                }, 
                 "[name=email]" : {
                     email : true,
                     text : {
@@ -45,33 +68,9 @@
                     callback: function(type, element, message) {
                         alert("자기소개 - " + message);
                     }
-                },
-                "#id-check" : {
-                    checkbox : {
-                        checkedAll: true
-                    },
-                    callback: function(type, element, message) {
-                        alert("아이디 검증 - " + message)
-                    }
-                },
-               "#agree-check" : {
-                   checkbox: {
-                       checkedAll : true
-                   },
-                   callback : function(type, element, message) {
-                    alert("약관 동의 - " + message)
-                   }
-               },
-              "[name=sex]" : {
-                    radio : {
-                      selected : true
-                    },
-                    callback : function(type, element, message) {
-                        alert("성별 선택 - " + message)
-                    }
                 }
-                
-            }
+            };
+
             function validate() {
                 var result = false;
                 try {
@@ -80,6 +79,10 @@
                     alert(e);
                 }
                 return result;
+            }
+
+            function checkId() {
+                document.getElementById("id-check").checked = true;
             }
         </script>
 
@@ -145,7 +148,7 @@
                     <div class="input-wrap input-wrap-valid">
                         <label>ID</label>
                         <input class="input" type="text" name="id" autocomplete="off" placeholder="아이디를 입력해 주세요"  />
-                        <input class="valid-btn" type="button" value="ID 확인" />
+                        <input class="valid-btn" type="button" value="ID 확인" onclick="checkId()" />
                         <input class="hidden" type="checkbox" id="id-check" />
                     </div>
 
