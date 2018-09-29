@@ -27,9 +27,10 @@ module.exports = (env, args) => {
                     include: path.join(__dirname),
                     exclude: /(node_modules)|(dist)/,
                     use: {
-                        loader: 'babel-loader',
+                        loader: "babel-loader",
                         options : {
-                            presets: ['env']
+                            plugins : ["babel-plugin-transform-runtime"],
+                            presets: ["env"]
                         }
                     }
                 }
