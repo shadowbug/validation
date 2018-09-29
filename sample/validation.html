@@ -1,0 +1,41 @@
+
+
+<html>
+    <head>
+        <title>예제</title>
+
+        <script type="text/javascript" src="../validation.bundle.js" ></script>
+
+        <script type="text/javascript">
+            var option = {
+                "[name=id]" : {
+                    empty : true,
+                    callback : function(type, element, message) {
+                        alert(message);
+                    }
+                }
+            }
+            function validate() {
+                try {
+                    v.validate(option);
+                } catch(e) {
+                    alert(e);
+                }
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <form onsubmit="return validate()">
+            <div>
+                <input type="text" name="id" value="" placeholder="아이디" />
+            </div>
+            <div>
+                <input type="password" name="password" value="" placeholder="패스워드" />
+            </div>
+            <div>
+                <input type="submit" value="로그인" />
+            </div>
+        </form>
+    </body>
+</html>
