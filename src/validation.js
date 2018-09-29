@@ -11,7 +11,6 @@ v.validate = function(options) {
         if(selector == "callback") {
             continue;
         }
-
         const option = options[selector];
         const elements = document.querySelectorAll(selector);
 
@@ -24,6 +23,9 @@ v.validate = function(options) {
             if(!result.result) {
                 const callback = option.callback || options.callback || function(type, element, message) {
                     return;
+                }
+                if(result.element != null) {
+                    result.element.focus();
                 }
                 callback(result.type, result.element, result.message);
                 return false;

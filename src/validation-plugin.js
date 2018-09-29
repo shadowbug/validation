@@ -5,7 +5,7 @@ module.exports = {
         error : "비어있는 값이 발견되였습니다",
         callback : function(elements, condition) {
             if(condition) {
-                for(const element in elements) {
+                for(const element of elements) {
                     if(util.isEmpty(element.value)) {
                         return {
                             result : false,
