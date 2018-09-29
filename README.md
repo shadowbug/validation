@@ -18,6 +18,13 @@
       // 샐랙터 검증 조건
       "[name=id]" : {
         empty : false,   // false일 경우 empty 체크
+        checkbox : {
+            checkedOne: true,       // 선택된 체크박스중 한개 이상 선택되었을 경우 
+            checkedAll : true,      // 모든 체크박스가 체크되었을 때
+        },
+        radio : {
+            selected : true         // 라디오버튼이 선택되었을 때
+        },
         text : {
           min : 0,
           max : 9999
@@ -110,7 +117,8 @@ root 플러그인에 추가 및 오버라이딩이 가능하며 심지어 계층
 
 그 후 아래의 URL로 접속해 보면 간단한 폼 페이지가 뜨게 될 것입니다.  
 
-    http://www.localhost:9000/sample/validation.html
+    http://localhost:9000/sample/login.html
+    http://localhost:9000/sample/join.html
 
 
 해당 소스에 대한 경로는 아래와 같습니다.  
