@@ -10,47 +10,47 @@
 가독성이 좋지않고 반복적인 기존의 절차적인 검증방식을 탈피하기 위해 검증식을 선언하세요.
 모든 검증처리는 valiate 함수가 당신의 일을 대신 해 줄 것입니다.
 ------------------------------------------------------------------------------
-// 검증 조건 설정
-// 아래의 검증조건은 모든 검증식을 나타낸 옵션입니다.
-// 필요한 것만 취사해서 선택하시기 바랍니다.
-var condition = {
-  // 샐랙터 검증 조건
-  "[name=id]" : {
-    text : {
-      min : 0,
-      max : 9999
-    },
-    byte : {
-      min : 0,
-      max : 9999
-    },
-    number : {
-      min : 0,
-      max : 9999
-    },
-    email : true,
-    url : true,
-    callback : function(type, element, message) {
-      // type - 검증 실패된 타입
-      // text의 min 조건에서 실패된 경우 type는 text.min으로 값을 돌려줌
-      // element - 실패된 엘리먼트를 리턴
-      // message - 검증기에서 알려주는 메시지, 그대로 사용하지 말고 개발시 참고만 하세요.
-      
-    }
-  },
-  ....
-  callback: function(type, element, message) {
-    // 전역 콜백 함수
-    // 샐랙터 검증 조건안에 callback을 선언하지 않은 경우 이곳으로 모든 오류 메시지가 들어오게 됩니다.
-  }
-};
+    // 검증 조건 설정
+    // 아래의 검증조건은 모든 검증식을 나타낸 옵션입니다.
+    // 필요한 것만 취사해서 선택하시기 바랍니다.
+    var condition = {
+      // 샐랙터 검증 조건
+      "[name=id]" : {
+        text : {
+          min : 0,
+          max : 9999
+        },
+        byte : {
+          min : 0,
+          max : 9999
+        },
+        number : {
+          min : 0,
+          max : 9999
+        },
+        email : true,
+        url : true,
+        callback : function(type, element, message) {
+          // type - 검증 실패된 타입
+          // text의 min 조건에서 실패된 경우 type는 text.min으로 값을 돌려줌
+          // element - 실패된 엘리먼트를 리턴
+          // message - 검증기에서 알려주는 메시지, 그대로 사용하지 말고 개발시 참고만 하세요.
+          
+        }
+      },
+      ....
+      callback: function(type, element, message) {
+        // 전역 콜백 함수
+        // 샐랙터 검증 조건안에 callback을 선언하지 않은 경우 이곳으로 모든 오류 메시지가 들어오게 됩니다.
+      }
+    };
 
-var result = window.v.validate(condition);
-if(result) {
-  alert("검증 완료되었습니다");
-} else {
-  alert("검증 실패되었습니다");
-}
+    var result = window.v.validate(condition);
+    if(result) {
+      alert("검증 완료되었습니다");
+    } else {
+      alert("검증 실패되었습니다");
+    }
 ------------------------------------------------------------------------------
 
 
