@@ -18,8 +18,11 @@ v.validate = function(options) {
             if(name == "callback") {
                 continue;
             }
+            const stack = new Array();
             const value = option[name];
-            const result = validate(elements, name, value);
+
+            const result = validate(stack, v.plugin, elements, name, value);
+            
             if(!result.result) {
                 const callback = option.callback || options.callback || function(type, element, message) {
                     return;
@@ -35,38 +38,40 @@ v.validate = function(options) {
     return true;
 }
 
-function validate(elements, name, value) {
-    if(v.plugin[name] == null) {
-        throw "Plugin " + name + "은 존재하지 않습니다";
-    }
+function validate(stack, plugins, elements, name, options) {
+    try {
+        stack.push(name);
 
-    const plugin = v.plugin[name];
-    if(plugin.callback == null) {
-        throw "Plugin " + name + "은 콜백이 정의되지 않았습니다";
-    }
+        // 상위 플러그인 처리 
+        const plugin = plugins[name];        
+        const callback = plugin.callback || function(elements, options) { return { result: true }; };
 
+        const result = callback(elements, options);
+        if(!result.result) {
+            result.type = stack.join(",");
+            return result;
+        }
 
-    if(plugin.dependency != null) {
-        for(const defName in plugin.dependency) {
-            const defValue = plugin.dependency[defName];
-
-            const result = validate(elements, defName, defValue);
-            if(!result.result) {
-                return result;
+        // 하위 플러그인 처리
+        if(typeof options == "object") {
+            for(const sname in options) {
+                if(sname == "callback") {
+                    continue;
+                }
+                const svalue = options[sname];
+                const result = validate(stack, plugin, elements, sname, svalue);
+                if(!result.result) {
+                    return result;
+                }
             }
         }
-    }
-
-    const result = plugin.callback(elements, value);
-    if(!result.result) {
-        result.type = name;
-        result.message = plugin.error || "Plugin " + name + "으로부터 검증을 실패하였습니다";
-        return result;
-    }
-
-    return {
-        result : true,
-        message : "성공적으로 검증되었습니다"
+    
+        return {
+            result : true,
+            message : "성공적으로 검증되었습니다"
+        }
+    } finally {
+        stack.pop();
     }
 }
 
