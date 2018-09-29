@@ -4,7 +4,7 @@ const plugin = { };
 
 plugin.empty = {
     callback : function(elements, condition) {
-        if(condition) {
+        if(!condition) {
             for(const element of elements) {
                 if(util.isEmpty(element.value)) {
                     return {
