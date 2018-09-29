@@ -33,7 +33,7 @@ plugin.text = {
                     return {
                         result : false,
                         element : element,
-                        message : "텍스트 길이가 최소 " + value + "개 이상이어야 합니다"
+                        message : "텍스트 길이가 최소 " + value + "자 이상이어야 합니다"
                     };
                 }  
             }
@@ -50,7 +50,7 @@ plugin.text = {
                     return {
                         result : false,
                         element : element,
-                        message : "텍스트 길이가 최소 " + value + "개 이상이어야 합니다"
+                        message : "텍스트 길이가 최소 " + value + "자 이상이어야 합니다"
                     };
                 }
             }
@@ -86,7 +86,7 @@ plugin.number = {
                     return {
                         result : false,
                         element : element,
-                        message : "숫자는 최소 " + value + " 이상이어야 합니다"
+                        message : "숫자는 최소 " + value + " 이상 이어야 합니다"
                     };
                 }
             }
@@ -103,7 +103,7 @@ plugin.number = {
                     return {
                         result : false,
                         element : element,
-                        message : "숫자는 최대 " + value + " 미만이어야 합니다"
+                        message : "숫자는 최대 " + value + " 미만 이어야 합니다"
                     };
                 }
             }
@@ -127,7 +127,7 @@ plugin.byte = {
                     return {
                         result : false,
                         element : element,
-                        message : "byte[UTF-8] 길이는 최소 " + value + " 이상이어야 합니다"
+                        message : "byte[UTF-8] 길이는 최소 " + value + " 이상이 어야 합니다"
                     };
                 }
             }
@@ -144,7 +144,7 @@ plugin.byte = {
                     return {
                         result : false,
                         element : element,
-                        message : "byte[UTF-8] 길이는 최대 " + value + " 미만이어야 합니다"
+                        message : "byte[UTF-8] 길이는 최대 " + value + " 미만 이어야 합니다"
                     };
                 }
             }
