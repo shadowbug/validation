@@ -6,7 +6,7 @@
 필자는 이러한 한계를 JSON 방식의 검증 조건을 넣어주면, 자동으로 검증해주고 그 결과를 콜백 매서드로 연결시켜주는 라이브러리를 만들었습니다.
 
 
-1, 기본적인 사용방법
+## 1, 기본적인 사용방법
 가독성이 좋지않고 반복적인 기존의 절차적인 검증방식을 탈피하기 위해 검증식을 선언하세요.
 모든 검증처리는 valiate 함수가 당신의 일을 대신 해 줄 것입니다.
 ------------------------------------------------------------------------------
@@ -54,38 +54,38 @@
 ------------------------------------------------------------------------------
 
 
-2. 플러그인 추가
+## 2. 플러그인 추가
 해당 라이브러리가 사용하긴 편하지만, 확장성이 부족하다고 생각하십니까? 결론은 그렇지 않습니다.
 해당 라이브러리는 아래와 같이 플러그인으로 구성되어 있습니다.
 
 ------------------------------------------------------------------------------
-// empty2 플러그인 추가
-window.v.plugin.empty2 = {
-    callback : function(elements, option) {
-        const condition = option;
-        if(condition) {
-            for(const element of elements) {
-                if(util.isEmpty(element.value)) {
-                    return {
-                        result : false,
-                        element : element,
-                        message : "비어있는 값이 발견되였습니다"
-                    };
+    // empty2 플러그인 추가
+    window.v.plugin.empty2 = {
+        callback : function(elements, option) {
+            const condition = option;
+            if(condition) {
+                for(const element of elements) {
+                    if(util.isEmpty(element.value)) {
+                        return {
+                            result : false,
+                            element : element,
+                            message : "비어있는 값이 발견되였습니다"
+                        };
+                    }
                 }
             }
+            return {
+                result : true
+            };
         }
-        return {
-            result : true
-        };
-    }
-};
+    };
 
-// 실제 사용시 아래와 같이 selector 옵션에 신규 플러그인 사용
-var condition = {
-  "[name=password]" : {
-    empty2 : true
-  }
-};
+    // 실제 사용시 아래와 같이 selector 옵션에 신규 플러그인 사용
+    var condition = {
+      "[name=password]" : {
+        empty2 : true
+      }
+    };
 ------------------------------------------------------------------------------
 v.plugin은 루트 플러그인으로서 
 이 밑에 선언된 모든 플러그인 경로는 
