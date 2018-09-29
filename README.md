@@ -17,6 +17,7 @@
     var condition = {
       // 샐랙터 검증 조건
       "[name=id]" : {
+        empty : false,   // false일 경우 empty 체크
         text : {
           min : 0,
           max : 9999
